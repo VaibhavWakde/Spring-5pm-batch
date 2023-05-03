@@ -13,7 +13,6 @@ import java.util.List;
 @RestController
 @RequestMapping("/tutorials")
 public class TutorialController {
-
     @Autowired
     private TutorialService tutorialService;
 
@@ -37,9 +36,19 @@ public class TutorialController {
     public ResponseEntity<?> findById(@PathVariable Long id) {
         Tutorial tutorial = tutorialService.getById(id);
         if(tutorial != null ){
-            return ResponseEntity.ok(tutorialService.getById(id));
+            return ResponseEntity.ok(tutorial);
         }
         else
             return new ResponseEntity<>("Record with id " + id + " does not exisits",HttpStatus.NOT_FOUND);
+    }
+
+    @GetMapping("/findByTitle")
+    public ResponseEntity<?> findByTitle(@RequestParam String title) {
+        Tutorial tutorial = tutorialService.getTutorialByTitle(title);
+        if(tutorial != null ){
+            return ResponseEntity.ok(tutorial);
+        }
+        else
+            return new ResponseEntity<>("Record with title " + title + " does not exisits",HttpStatus.NOT_FOUND);
     }
 }

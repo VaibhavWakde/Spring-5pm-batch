@@ -12,4 +12,6 @@ public interface TutorialService {
     List<Tutorial> findAll();
 
     Tutorial getById(Long id);
+
+    Tutorial getTutorialByTitle(String title);
 }

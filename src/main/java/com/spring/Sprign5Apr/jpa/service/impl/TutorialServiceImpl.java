@@ -35,4 +35,9 @@ public class TutorialServiceImpl implements TutorialService {
         Optional<Tutorial> tutorialOptional = tutorialRepository.findById(id);
         return tutorialOptional.orElse(null);
     }
+
+    @Override
+    public Tutorial getTutorialByTitle(String title) {
+        return tutorialRepository.findByTitle(title).orElse(null);
+    }
 }
